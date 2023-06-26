@@ -19,11 +19,15 @@ eureka:
     fetchRegistry: true
     service-url:
       ### 多节点时：在defaultZone中配置所有的Eureka节点URL
-      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+      # defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
 
       ### 单节点时：在defaultZone中配置单节点的Eureka的URL
-      # defaultZone: http://localhost:7001/eureka
-
+      defaultZone: http://eureka7001.com:7001/eureka
+  instance:
+    # 服务名称修改（也就是将此服务在网页上Eurake面板“status”处的信息换成可读性高的名字）
+    instance-id: payment8081
+    # 在“status”处，将鼠标指针悬浮在payment8001，payment8002名下，会有IP地址提示
+    prefer-ip-address: true
 
 mybatis:
   mapperLocations: classpath:mappers/*.xml

@@ -11,8 +11,8 @@ eureka:
     fetch-registry: false
     service-url:
       ### 多实例Eureka（3台）时的配置：是其它兄弟Eureka实例的URL
-      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/
+      # defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/
 
       ### 单实例Eureka时的配置：是自己的URL
       # 设置与Eureka server交互的地址查询服务和注册服务都需要依赖这个地址。
-      # defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
