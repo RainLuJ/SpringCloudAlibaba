@@ -15,6 +15,7 @@
     <module>04-cloud-eureka-server7001</module>
     <module>05-cloud-eureka-server-replicas7002</module>
     <module>05-cloud-eureka-server-replicas7003</module>
+      <module>01-cloud-provider-payment-replicas8002</module>
   </modules>
 
   <!-- 统一管理jar包版本 -->
