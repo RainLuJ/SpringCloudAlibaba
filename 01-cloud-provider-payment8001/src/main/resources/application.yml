@@ -25,9 +25,15 @@ eureka:
       defaultZone: http://eureka7001.com:7001/eureka
   instance:
     # 服务名称修改（也就是将此服务在网页上Eurake面板“status”处的信息换成可读性高的名字）
-    instance-id: payment8081
+    instance-id: payment8001
     # 在“status”处，将鼠标指针悬浮在payment8001，payment8002名下，会有IP地址提示
     prefer-ip-address: true
+
+    ### 心跳检测与续约时间的相关设置：开发时应尽量设置的小些，保证服务挂掉后能被及时踢除
+    # Eureka客户端发送心跳[包]的时间间隔（默认是30秒）
+    lease-renewal-interval-in-seconds: 1
+    # Eureka服务端在收到最后一次心跳后的等待时间上限，单位为：秒（默认是90秒）。超时后，将立即踢除掉服务
+    lease-expiration-duration-in-seconds: 2
 
 mybatis:
   mapperLocations: classpath:mappers/*.xml

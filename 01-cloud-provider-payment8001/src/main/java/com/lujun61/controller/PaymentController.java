@@ -5,9 +5,12 @@ import com.lujun61.entity.Payment;
 import com.lujun61.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -17,6 +20,14 @@ public class PaymentController {
 
     @Value("${server.port}")
     private String serverPort;
+
+    @Resource
+    /*
+        是import org.springframework.cloud.client.discovery.DiscoveryClient;
+        而不是import com.netflix.discovery.DiscoveryClient;
+    */
+
+    private DiscoveryClient discoveryClient;
 
     @PostMapping(value = "/payment/create")
     public CommonResult<Integer> create(@RequestBody Payment payment) {
@@ -40,4 +51,39 @@ public class PaymentController {
             return new CommonResult<>(444, "没有对应记录,查询ID: " + id, null);
         }
     }
+
+    /**
+     * @description 服务的注册与发现
+     * @author Jun Lu
+     * @date 2023-06-26 18:15:04
+     */
+    @GetMapping(value = "/payment/discovery")
+    public Object discovery() {
+        /*
+            获取服务列表清单：
+                即：网页上Eurake面板"Application"处的服务名
+         */
+        List<String> services = discoveryClient.getServices();
+        for (String service : services) {
+            // 例如："CLOUD-PAYMENT-SERVICE"
+            String serviceName = "spring.application.name: " + service.toUpperCase();
+            System.out.println(serviceName);
+
+            /*
+                根据服务名获取该服务名下的所有服务实例（重名的服务实例）
+                    即：网页上Eurake面板"Status"处的服务实例信息
+             */
+            List<ServiceInstance> instances = discoveryClient.getInstances(serviceName);
+            for (ServiceInstance instance : instances) {
+                // 例如：服务名同为 “CLOUD-PAYMENT-SERVICE” 的 payment8001 与 payment8002 服务实例
+                System.out.println("与<<" + serviceName + ">> 同名的服务实例：" + instance.getServiceId() + "\t"
+                        + instance.getHost() + "\t"
+                        + instance.getPort() + "\t"
+                        + instance.getUri());
+            }
+        }
+
+        return this.discoveryClient;
+    }
 }
+
