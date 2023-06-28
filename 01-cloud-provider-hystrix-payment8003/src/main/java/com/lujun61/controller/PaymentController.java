@@ -36,5 +36,15 @@ public class PaymentController {
         System.out.println("paymentInfo_exception");
         return paymentService.paymentinfo_Timeout(id);
     }
+
+    /**
+     * @description 测试服务熔断
+     * @author Jun Lu
+     * @date 2023-06-28 11:38:12
+     */
+    @GetMapping("/payment/circuit/{id}")
+    public String paymentCircuitBreaker(@PathVariable("id")Integer id){
+        return paymentService.paymentCircuitBreaker(id);
+    }
 }
 
