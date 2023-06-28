@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: cloud-order-service
+    name: cloud-order-service-hystrix
 
 eureka:
   client:
@@ -22,3 +22,9 @@ eureka:
     instance-id: comsumer8080
     # 在“status”处，将鼠标指针悬浮在comsumer8080名下，会有IP地址提示
     prefer-ip-address: true
+
+### 服务降级的相关配置
+feign:
+  hystrix:
+    # 在feign中开启 hystrix
+    enabled: true

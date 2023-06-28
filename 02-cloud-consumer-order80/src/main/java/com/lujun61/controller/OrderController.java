@@ -3,6 +3,7 @@ package com.lujun61.controller;
 import com.lujun61.entity.CommonResult;
 import com.lujun61.entity.Payment;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,7 +27,21 @@ public class OrderController {
     }
 
     @GetMapping("/consumer/payment/get/{id}")
-    public CommonResult<Payment> getPayment(@PathVariable("id") Long id) {
+    public CommonResult<Payment> getPaymentUseObject(@PathVariable("id") Long id) {
         return restTemplate.getForObject(PAYMENT_URL + "/payment/get/" + id, CommonResult.class);
     }
+
+    @GetMapping("/consumer/payment/getForEntity/{id}")
+    public CommonResult<Payment> getPaymentUseEntity(@PathVariable("id") Long id) {
+        // ResponseEntity 是 Spring 中的类
+        ResponseEntity<CommonResult> entity = restTemplate.getForEntity(PAYMENT_URL + "/payment/get/" + id, CommonResult.class);
+
+        if (entity.getStatusCode().is2xxSuccessful()) {
+            return entity.getBody(); // 获取json字符串
+        } else {
+            return new CommonResult<>(444, "操作失败");
+        }
+    }
+
+
 }

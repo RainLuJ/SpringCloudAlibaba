@@ -13,15 +13,15 @@ spring:
 
 eureka:
   client:
-    # 表示是否将自己注册进Eurekaserver默认为true。
+    # 表示是否将自己作为服务注册进Eurekaserver。默认为true。
     register-with-eureka: true
-    # 是否从EurekaServer抓取已有的注册信息，默认为true。单节点无所谓，集群必须设置为true才能配合ribbon使用负载均衡
+    # 是否从EurekaServer抓取已有的注册信息，默认为true。单节点无所谓false|true，集群必须设置为true才能配合ribbon使用负载均衡
     fetchRegistry: true
     service-url:
-      ### 多节点时：在defaultZone中配置所有的Eureka节点URL
+      ### 当Eureka有多节点时：在defaultZone中配置所有的Eureka节点URL
       # defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
 
-      ### 单节点时：在defaultZone中配置单节点的Eureka的URL
+      ### 当Eureka是单节点时：在defaultZone中配置单节点的Eureka的URL
       defaultZone: http://eureka7001.com:7001/eureka
   instance:
     # 服务名称修改（也就是将此服务在网页上Eurake面板“status”处的信息换成可读性高的名字）

@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: cloud-order-service
+    name: cloud-order-feign-service
 
 eureka:
   client:
@@ -19,6 +19,19 @@ eureka:
       defaultZone: http://eureka7001.com:7001/eureka
   instance:
     # 服务名称修改（也就是将此服务在网页上Eurake面板“status”处的信息换成可读性高的名字）
-    instance-id: comsumer8080
+    instance-id: comsumerFeign8080
     # 在“status”处，将鼠标指针悬浮在comsumer8080名下，会有IP地址提示
     prefer-ip-address: true
+
+### Feign客户端在调用服务时一般默认等待1秒钟，超时后直接抛出异常！
+# 由于Feign是基于Ribbon完成服务调用的，所以要对Ribbon进行服务超时调用配置
+ribbon:
+  # 指的是建立连接所用的时间，适用于网络状况正常的情况下，B-S 两端连接所用的时间
+  ReadTimeout: 5000
+  # 指的是建立连接后从服务器读取到可用资源所用的时间
+  ConnectTimeout: 5000
+
+logging:
+  level:
+    # feign日志以什么级别监控哪个接口
+    com.lujun61.service.PaymentFeignService: debug

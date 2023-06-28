@@ -16,6 +16,9 @@
     <module>05-cloud-eureka-server-replicas7002</module>
     <module>05-cloud-eureka-server-replicas7003</module>
       <module>01-cloud-provider-payment-replicas8002</module>
+      <module>02-cloud-consumer-order-openfeign8080</module>
+    <module>01-cloud-provider-hystrix-payment8003</module>
+    <module>02-cloud-customer-feign-order-hystrix8080</module>
   </modules>
 
   <!-- 统一管理jar包版本 -->
