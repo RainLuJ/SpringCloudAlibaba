@@ -8,7 +8,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 @SpringBootApplication
 @EnableEurekaClient
 /*
-    @EnableHystrix注解被@EnableCircuitBreaker了，
+    @EnableHystrix注解被@EnableCircuitBreaker注解了，
     @EnableCircuitBreaker的作用是开启熔断器功能。
     且@EnableCircuitBreaker支持对多种熔断器的集成，不仅仅是Hystrix，还有Resilience4j等……
  */

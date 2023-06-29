@@ -33,6 +33,12 @@
       <artifactId>spring-cloud-starter-zipkin</artifactId>
     </dependency>-->
 
+    <!-- hystrix Dashboard-->
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
+    </dependency>
+
     <!--eureka-client-->
     <dependency>
       <groupId>org.springframework.cloud</groupId>

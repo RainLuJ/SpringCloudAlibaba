@@ -1,0 +1,9 @@
+server:
+  port: 9001
+
+# feign-dashboard 配置注意3
+# 配置允许访问dashboard的主机ip
+# feign-dashboard 配置注意4：需要先访问服务，数据分析才会显现出来！
+hystrix:
+  dashboard:
+    proxy-stream-allow-list: "localhost"

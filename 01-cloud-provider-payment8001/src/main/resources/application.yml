@@ -38,3 +38,11 @@ eureka:
 mybatis:
   mapperLocations: classpath:mappers/*.xml
   type-aliases-package: com.lujun61.entity
+
+# 异常信息解决：ashboardConfiguration$ProxyStreamServlet : Failed opening connection to http://localhost:8001/hystrix.stream?delay=2000 : 503 : HTTP/1.1 503
+# 暴露全部的监控信息：让信息可以通过actuator回馈给dashboard
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

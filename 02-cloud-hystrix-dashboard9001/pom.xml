@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>02-cloud-consumer-order-openfeign8080</artifactId>
+    <artifactId>02-cloud-hystrix-dashboard9001</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -17,25 +17,17 @@
     </properties>
 
     <dependencies>
-        <!-- 项目自定义通用类包 -->
+        <!-- hystrix Dashboard-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>com.lujun61</groupId>
             <artifactId>03-cloud-api-common</artifactId>
             <version>2.0.1</version>
         </dependency>
-
-        <!--eureka-client-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
-
-        <!-- openfeign -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>
-
     </dependencies>
 
 </project>

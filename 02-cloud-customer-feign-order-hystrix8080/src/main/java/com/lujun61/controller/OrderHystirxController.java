@@ -43,7 +43,7 @@ public class OrderHystirxController {
     @GetMapping("/consumer/payment/hystrix/timeout/{id}")
     @HystrixCommand(fallbackMethod = "paymentTimeOutFallbackMethod",
             commandProperties = {
-                                                                                            /* 消费端只等1.5s */
+                    /* 消费端只等1.5s */
                     @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1500")})
     public String paymentInfo_TimeOut(@PathVariable("id") Integer id) {
         String result = paymentHystrixService.paymentInfo_Timeout(id);
@@ -57,7 +57,7 @@ public class OrderHystirxController {
     @GetMapping("/consumer/payment/hystrix/exception/{id}")
     @HystrixCommand(fallbackMethod = "paymentExceptionFallbackMethod",
             commandProperties = {
-                                                                                            /* 消费端只等1.5s */
+                    /* 消费端只等1.5s */
                     @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1500")})
     public String paymentInfo_Exception(@PathVariable("id") Integer id) {
         int i = 10 / 0;
@@ -71,7 +71,7 @@ public class OrderHystirxController {
 
     // TODO: 定义全局fallback方法
     /* 单独指定了兜底方法的方法会走自己的兜底方法，否则就走全局配置的兜底方法 */
-    public String payment_Global_FallbackMethod(){
+    public String payment_Global_FallbackMethod() {
         return "Global异常处理信息，请稍后再试，/(ㄒoㄒ)/~~";
     }
 }
