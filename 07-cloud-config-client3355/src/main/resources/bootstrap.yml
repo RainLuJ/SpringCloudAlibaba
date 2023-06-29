@@ -1,0 +1,33 @@
+server:
+  port: 3355
+
+spring:
+  application:
+    name: config-client-server
+  cloud:
+    config:
+      ### cloud.config代表的是，配置中心【客户端】的配置
+      label: master  # 分支名称
+      # 配置文件名称：文件也可以是client-config-dev.yml这种格式的，这里就写 client-config
+      name: config
+      # 配置文件后缀名称
+      profile: dev
+      ## 上述3个综合，所代表的就是：master分支中的config-dev.yml文件
+      uri: http://localhost:3344 # 配置中心【服务端】的地址
+      ## 综合上面四个，代表的就是读取远程配置仓库中的 http://localhost:3344/master/config-dev.yml 文件
+
+### 注册进 Eureka 注册中心
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+
+### 实现 Config Client 的动态刷新
+# 暴露监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

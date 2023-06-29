@@ -1,0 +1,31 @@
+server:
+  port: 3344
+
+spring:
+  application:
+    name:  cloud-config-center-server # 注册进Eureka服务器的微服务名
+  cloud:
+    config:
+      server:  ### config.server代表的是，配置中心【服务端】的配置信息
+        git:
+          # GitHub上面的git仓库名字
+          uri: https://gitee.com/lu-jun61/SpringCloudAlibabaConfig.git
+          #### 搜索目录
+          search-paths:
+            - SpringCloudAlibabaConfig
+          ## 跳过SSL验证
+          skip-ssl-validation: true
+          username: lu-jun61
+          password: 200301241814LU
+          ## 强制客户端在每次请求配置时都从配置中心拉取最新的配置信息，而不使用本地缓存的配置
+          force-pull: true
+      #### 读取的分支（branch）
+      label: master
+
+### 注册进 Eureka 注册中心
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/
+    register-with-eureka: true
+    fetch-registry: true
