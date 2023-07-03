@@ -4,6 +4,14 @@ server:
 spring:
   application:
     name: config-client-server
+  ### RabbitMQ的相关配置
+  rabbitmq:
+    host: 47.113.201.154
+    # RabbitMQ的可视化网页端口是：15672
+    # 使用程序连接RabbitMQ使用的是TCP连接，需要访问端口5672
+    port: 5672
+    username: rainlu
+    password: RainLu666
   cloud:
     config:
       ### cloud.config代表的是，配置中心【客户端】的配置
@@ -30,4 +38,6 @@ management:
   endpoints:
     web:
       exposure:
-        include: "*"
+        include:
+        - "*"
+        - 'bus-refresh'

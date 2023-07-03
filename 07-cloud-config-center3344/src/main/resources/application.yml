@@ -4,6 +4,14 @@ server:
 spring:
   application:
     name:  cloud-config-center-server # 注册进Eureka服务器的微服务名
+  ### RabbitMQ的相关配置（1）
+  rabbitmq:
+    host: 47.113.201.154
+    # RabbitMQ的可视化网页端口是：15672
+    # 使用程序连接RabbitMQ使用的是TCP连接，需要访问端口5672
+    port: 5672
+    username: rainlu
+    password: RainLu666
   cloud:
     config:
       server:  ### config.server代表的是，配置中心【服务端】的配置信息
@@ -29,3 +37,12 @@ eureka:
       defaultZone: http://eureka7001.com:7001/eureka/
     register-with-eureka: true
     fetch-registry: true
+
+
+
+# RabbitMQ 的相关配置（2）：暴露bus刷新配置的端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'bus-refresh'

@@ -24,3 +24,31 @@ eureka:
 feign:
   hystrix:
     enabled: true
+
+## 全局设置熔断器服务参数
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            # 是否开启断路器
+            enabled: true
+            ### 这里的时间都是以ms为单位 ###
+            # 熔断器进行服务降级的时间（默认1000）
+            timeoutInMilliseconds: 8000
+            # 请求次数
+            requestVolumeThreshold: 10
+            # 时间窗口期
+            sleepWindowInMilliseconds: 10000
+            # 失败率达到多少后进行熔断
+            errorThresholdPercentage: 60
+
+### 全局设置Feign的fallback属性（由于Feign就是基于Ribbon的，所以就是对Ribbon进行参数设置）
+ribbon:
+  ## Ribbon建⽴连接最⼤等待时间
+  ConnectTimeout: 1000
+  ## 在当前服务提供者尝试连接次数
+  MaxAutoRetries: 2
+  ## 与服务提供者通信时间
+  ReadTimeout: 5000

@@ -1,0 +1,19 @@
+server:
+  port: 9100
+
+spring:
+  application:
+    name: nacos-payment-provider
+    ### 配置Nacos客户端（服务发现端）
+  cloud:
+    nacos:
+      discovery:
+        # Nacos服务端（注册中心）的地址
+        server-addr: localhost:8848 #配置Nacos地址
+
+# 暴露在本服务中需要暴露的接口
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

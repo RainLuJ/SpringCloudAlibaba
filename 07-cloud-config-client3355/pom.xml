@@ -34,6 +34,11 @@
             <artifactId>03-cloud-api-common</artifactId>
             <version>2.0.1</version>
         </dependency>
+        <!-- 添加rabbitMQ的消息总线支持包 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bus-amqp</artifactId>
+        </dependency>
 
     </dependencies>
 </project>
