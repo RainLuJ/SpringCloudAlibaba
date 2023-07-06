@@ -1,0 +1,25 @@
+### TODO: 配置文件的访问路径。即：Nacos中【DataId】的概念
+# ${spring.application.name}-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+# 本项目的配置中：nacos-config-client-dev.yaml
+
+server:
+  port: 9300
+
+spring:
+  application:
+    name: nacos-config-client
+  cloud:
+    nacos:
+      ### 用于指定Spring Cloud Nacos作为【服务发现的注册中心】，并设置Nacos Server的地址
+      # 将配置中心注册到Nacos
+      discovery:   ## 用于配置Nacos服务发现的相关属性
+        server-addr: localhost:8848 # 服务注册中心地址
+      # 用于指定Spring Cloud Nacos作为【配置中心】，并设置Nacos Server的地址
+      config:
+        server-addr: localhost:8848 # 指定Nacos Server的地址，即Nacos服务注册中心的地址
+        ### 由于Nacos中支持的配置文件格式为yaml，则遵守它！！！不要写成yml了！！！！！
+        file-extension: yaml # 指定yaml格式的配置
+        ## Group方案
+        group: DEV_GROUP
+        ## namespace方案
+        namespace: 1ce38338-9087-428e-89fd-aac03dbf6198
